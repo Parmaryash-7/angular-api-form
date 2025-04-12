@@ -1,0 +1,88 @@
+.users_div {
+    margin-top: 50px;
+}
+
+.users_list {
+    list-style: none;
+    padding: 0;
+    width: 100%;
+}
+
+.user_deatils {
+    display: grid;
+    grid-template-columns: .5fr 1fr 1.5fr .5fr 1fr .8fr 1fr .8fr;
+    align-items: center;
+    column-gap: 10px;
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+}
+
+.user_deatils p {
+    margin: 0;
+}
+
+.user_deatils .profile_image {
+    width: 100%;
+    overflow: hidden;
+}
+
+.user_deatils .profile_image img {
+    border-radius: 5px;
+    object-fit: cover;
+    object-position: top;
+    aspect-ratio: 16/9;
+}
+
+.user_deatils .btn {
+    margin-left: 5px;
+}
+
+.user_deatils .btn a {
+    padding: 6px 12px;
+    background-color: #007BFF;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+}
+
+.user_deatils:first-child {
+    font-weight: bold;
+}
+
+.search_input {
+    padding: 8px;
+    width: 60%;
+    margin: 0 15%;
+    margin-bottom: 5%;
+    font-size: 16px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+}
+
+.pagination_controls {
+    margin-top: 20px;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding-bottom: 20px;
+}
+
+.pagination_controls button {
+    background-color: #333;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.pagination_controls button.active {
+    background-color: #007bff;
+    font-weight: bold;
+}
+
+.pagination_controls button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}

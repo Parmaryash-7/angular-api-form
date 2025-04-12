@@ -1,0 +1,56 @@
+@import url(https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css);
+
+body {
+    background-color: #1e1e1e;
+    color: white;
+    font-family: sans-serif;
+}
+
+body,
+html,
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.api_wrapper .ovhidden {
+    overflow: hidden;
+}
+
+.api_wrapper .relative {
+    position: relative;
+}
+
+.api_wrapper img {
+    width: 100%;
+    max-width: 100%;
+}
+
+.api_wrapper .font_15 {
+    font-size: 15px;
+}
+
+.api_wrapper .font_14 {
+    font-size: 20px;
+}
+
+.api_wrapper .font_26 {
+    font-size: 26px;
+}
+
+.api_wrapper .Loading_div {
+    padding-left: 5% ;
+}
+
+.api_wrapper .Error_div {
+    padding-left: 5% ;
+    color: red;
+    font-size: 10px;
+    margin-top: 3%;
+}
+
+/* .api_wrapper .main_content { */
+    /* padding-left: 20%; */
+    /* padding-right: 20%; */
+/* } */

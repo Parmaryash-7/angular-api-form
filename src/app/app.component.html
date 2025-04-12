@@ -1,0 +1,9 @@
+<div *ngIf="isUserAuthorized" class="navbar">
+  <div class="logo"><a><h3 class="font_14">UserApi</h3></a></div>
+  <a routerLink="create-user"><h3 class="font_14">User Create</h3></a>
+  <a routerLink="user_table"><h3 class="font_14">Users table</h3></a>
+  <a class="logout" (click)="logout()" ><h3 class="font_14">Logout</h3></a>
+</div>
+<div class="main_content">
+  <router-outlet></router-outlet>
+</div>

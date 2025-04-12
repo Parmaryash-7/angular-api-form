@@ -1,0 +1,76 @@
+.login-form {
+    background-color: #1e1e1e;
+    padding: 2%;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 400px;
+    margin: 10% auto;
+    color: #f0f0f0;
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.6);
+}
+
+.login-form h2 {
+    margin-bottom: 5%;
+    text-align: center;
+    color: #ffffff;
+}
+
+.login-form form {
+    width: 100%;
+}
+
+.login-form input {
+    width: 100%;
+    margin: 5% 0;
+    margin-bottom: 0;
+    padding: 3.5%;
+    border: 1px solid #444;
+    background-color: #2a2a2a;
+    color: #fff;
+    border-radius: 8px;
+    transition: border-color 0.3s ease;
+}
+
+.login-form input:focus {
+    outline: none;
+    border-color: #6a9eff;
+}
+
+.password_eye {
+    position: absolute;
+    right: 3%;
+    top: 50%;
+    /* transform: translateY(-50%); */
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    color: #ccc;
+    font-size: 15px;
+}
+
+.password_eye:hover {
+    color: #ffffff;
+}
+
+.btn_submit {
+    background-color: #353535;
+    color: white;
+    padding: 3.5%;
+    /* font-size: 1rem; */
+    border: none;
+    width: 100%;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    margin-top: 5%;
+}
+
+.btn_submit:disabled {
+    cursor: not-allowed;
+    background-color: #252525;
+    color: #444;
+}
+
+.btn_submit:hover {
+    background-color: #252525;
+}

@@ -1,0 +1,67 @@
+<div class="users_div">
+    <div class="Loading_div" *ngIf="isLoading; else user_deatils">
+        <h2 class="font_26">{{text}}</h2>
+    </div>
+    <ng-template #user_deatils>
+        <input type="text" placeholder="Search by Name, Email, Age, or Phone" [(ngModel)]="searchTerm"
+            (input)="filterUsers()" class="search_input" />
+
+        <ol class="users_list">
+            <li class="user_deatils">
+                <div class="id">
+                    <p class="font_15 bold_style">ID</p>
+                </div>
+                <div class="name">
+                    <p class="font_15 bold_style">Name</p>
+                </div>
+                <div class="email">
+                    <p class="font_15 bold_style">Email</p>
+                </div>
+                <div class="age">
+                    <p class="font_15 bold_style">age</p>
+                </div>
+                <div class="phone_no">
+                    <p class="font_15 bold_style">Phone No</p>
+                </div>
+                <div class="gender">
+                    <p class="font_15 bold_style">Gender</p>
+                </div>
+                <div class="profile_image">
+                    <p class="font_15 bold_style">Profile Image</p>
+                </div>
+            </li>
+            <li *ngFor="let user of pagedUsers; index as i " class="user_deatils">
+                <div class="id">
+                    <p class="font_15 bold_style">{{ (currentPage - 1) * itemsPerPage + i + 1 }}</p>
+                </div>
+                <div class="name">
+                    <p class="font_15 bold_style">{{user.name}}</p>
+                </div>
+                <div class="email">
+                    <p class="font_15 bold_style">{{user.email}}</p>
+                </div>
+                <div class="age">
+                    <p class="font_15 bold_style">{{user.age}}</p>
+                </div>
+                <div class="phone_no">
+                    <p class="font_15 bold_style">{{user.phone_no}}</p>
+                </div>
+                <div class="gender">
+                    <p class="font_15 bold_style">{{user.gender}}</p>
+                </div>
+                <div class="profile_image"><img src={{user.profile_image}} alt="" class="user_profile"></div>
+                <div class="btn"><a [routerLink]="['/edit_user',user.id]" class="font_15">Edit</a></div>
+            </li>
+        </ol>
+        <div class="pagination_controls">
+            <button (click)="prevPage()" [disabled]="currentPage === 1">Previous</button>
+
+            <button *ngFor="let page of totalPagesArray()" (click)="goToPage(page)"
+                [class.active]="page === currentPage">
+                {{ page }}
+            </button>
+
+            <button (click)="nextPage()" [disabled]="currentPage === totalPages()">Next</button>
+        </div>
+    </ng-template>
+</div>

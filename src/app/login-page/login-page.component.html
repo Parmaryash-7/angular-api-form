@@ -1,0 +1,24 @@
+<div class="login-form">
+    <h2 class="font_26">Login</h2>
+    <form (ngSubmit)="onLogin()" #f="ngForm">
+        <input class="font_14" type="email" [(ngModel)]="email" name="email" placeholder="Email" email required
+            #emailInput="ngModel" />
+        <div class="Error_div" *ngIf="emailInput.invalid && (emailInput.touched || emailInput.dirty)">
+            <p *ngIf="emailInput.errors?.email">Invalid Email!</p>
+        </div>
+        <div class="password_group relative">
+            <input [type]="showPassword ? 'text' : 'password'" [(ngModel)]="password" name="password" #pwd="ngModel"
+                minlength="6" required>
+            <button class="password_eye" type="button" (click)="togglePasswordVisibility()">
+                <i [ngClass]="showPassword ? 'ri-eye-line' : 'ri-eye-close-line'"></i>
+            </button>
+        </div>
+        <div class="Error_div" *ngIf="pwd.invalid && (pwd.touched || pwd.dirty)">
+            <p *ngIf="pwd.errors?.minlength">Password must be at least 6 characters.</p>
+        </div>
+        <button class="btn_submit" type="submit" [disabled]="f.invalid">Login</button>
+    </form>
+    <div class="Error_div" *ngIf="errMsg">
+        <h2>{{errMsg}}</h2>
+    </div>
+</div>

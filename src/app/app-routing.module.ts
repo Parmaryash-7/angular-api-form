@@ -8,8 +8,6 @@ import { AuthGuard } from './auth.guard';
 import { AngularFormsComponent } from './angular-forms/angular-forms.component';
 import { MasterForFormComponent } from './master-for-form/master-for-form.component';
 import { UserFormDetailsComponent } from './user-form-details/user-form-details.component';
-import { AppComponent } from './app.component';
-
 
 const routes: Routes = [
   {

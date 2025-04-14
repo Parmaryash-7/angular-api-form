@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { UserDataService } from './user-data.service';
+import { AlertService } from './alert.service';
 
 @Component({
   selector: 'app-root',
@@ -10,8 +10,8 @@ import { UserDataService } from './user-data.service';
 export class AppComponent implements OnInit {
   isUserAuthorized: boolean = false;
 
-  constructor(private router: Router) { 
-    if(localStorage.getItem('authToken')){
+  constructor(private router: Router, private alertShow: AlertService) {
+    if (localStorage.getItem('authToken')) {
       this.isUserAuthorized = true;
     }
   }
@@ -20,9 +20,16 @@ export class AppComponent implements OnInit {
   }
 
   logout(): void {
-    localStorage.removeItem('authToken');
-    this.isUserAuthorized = false;
-    console.log('logged out');
-    this.router.navigate(['login']);
+    this.alertShow.confirm('Want to log out? ☹').then((result) => {
+      if (result.isConfirmed) {
+        this.alertShow.info('See you later! 👋');
+        localStorage.removeItem('authToken');
+        this.isUserAuthorized = false;
+        console.log('logged out');
+        this.router.navigate(['login']);
+      } else {
+        this.alertShow.info('Welcome back! 😊');
+      }
+    })
   }
 }

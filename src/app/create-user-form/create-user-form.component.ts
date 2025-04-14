@@ -3,6 +3,7 @@ import { UserDataService } from '../user-data.service';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
+import { AlertService } from '../alert.service';
 
 @Component({
   selector: 'app-create-user-form',
@@ -39,6 +40,7 @@ export class CreateUserFormComponent implements OnInit {
       const validImageTypes = ['image/jpeg', 'image/png', 'image/webp', 'image/jpg'];
       if (!validImageTypes.includes(file.type)) {
         this.errMsgImg = "Please select a valid image file";
+        this.alertShow.info('Invalid File Uploaded! 🤓');
         this.user.profile_image = '';
         this.selectedFile = undefined!;
         return;
@@ -89,6 +91,11 @@ export class CreateUserFormComponent implements OnInit {
     this.userDataService.createUser(formData).subscribe((response) => {
       console.log(response);
       if (response.success == 1) {
+        if(this.user.id){
+          this.alertShow.success('Yay🥳! User is Updated');
+        }else{
+          this.alertShow.success('Yay🥳! User is Created');
+        }
         this.user = {
           name: "",
           email: "",
@@ -101,12 +108,13 @@ export class CreateUserFormComponent implements OnInit {
         this.router.navigate(['/user-table']);
       } else {
         this.errMsg = "Something Went Wrong! 😅 Try again";
+        this.alertShow.error('Sorry😞! Data not sent');
         return;
       }
     });
   }
 
-  constructor(private userDataService: UserDataService, private router: Router, private route: ActivatedRoute, private titleService: Title) { }
+  constructor(private alertShow: AlertService, private userDataService: UserDataService, private router: Router, private route: ActivatedRoute, private titleService: Title) { }
 
   ngOnInit() {
     const title = this.route.snapshot.data['title'];
@@ -122,6 +130,7 @@ export class CreateUserFormComponent implements OnInit {
           console.error(err);
           this.isLoading = true;
           this.text = "Something Went Wrong!😅";
+          this.alertShow.error('Something Went Wrong!😅');
         })
     } else {
       this.isLoading = false;

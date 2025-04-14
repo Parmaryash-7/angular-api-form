@@ -3,6 +3,8 @@ import { UserDataService } from '../user-data.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import { AppComponent } from '../app.component';
+import { ToastrService } from 'ngx-toastr';
+import { AlertService } from '../alert.service';
 
 @Component({
   selector: 'app-login-page',
@@ -16,9 +18,10 @@ export class LoginPageComponent implements OnInit {
   errMsg: string = '';
   showPassword: boolean = false;
 
-  constructor(private appComponent: AppComponent, private userDataService: UserDataService, private router: Router, private route: ActivatedRoute, private titleService: Title) { }
+  constructor(private toaster: ToastrService, private alertShow: AlertService, private appComponent: AppComponent, private userDataService: UserDataService, private router: Router, private route: ActivatedRoute, private titleService: Title) { }
 
   ngOnInit() {
+    // this.alertShow.error("Invalid Credentials!😵");
     const title = this.route.snapshot.data['title'];
     this.titleService.setTitle(title);
     if (localStorage.getItem('authToken')) {
@@ -31,21 +34,27 @@ export class LoginPageComponent implements OnInit {
   }
 
   onLogin() {
-    this.errMsg = '';
+    // this.errMsg = '';
     this.userDataService.login(this.email, this.password).subscribe(
       (res) => {
         // console.log('Login successful:', res.data.id);
         localStorage.setItem('authToken', res.data.id);
+        // this.toaster.error("Logged in success fully!", 'success');
         this.appComponent.isUserAuthorized = true;
+        this.alertShow.success("Yay! Logged in");
         this.router.navigate(['']);
       },
       (err) => {
         console.error('Login failed:', err);
         if (err.status == 0) {
-          this.errMsg = "Something Went Wrong!😅";
+          // this.errMsg = "Something Went Wrong!😅";
+          this.alertShow.error("Something Went Wrong!😅");
+          // this.toaster.error("Something Went Wrong!😅", 'error');
         }
         if (err.status == 401) {
-          this.errMsg = err.error.message
+          // this.errMsg = err.error.message;
+          this.alertShow.error(err.error.message + '😵');
+          // this.toaster.error(err.error.message, 'error');
         }
         // this.errMsg = err
       }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserDataService } from '../user-data.service';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
+import { AlertService } from '../alert.service';
 
 @Component({
   selector: 'app-users-table',
@@ -18,7 +19,7 @@ export class UsersTableComponent implements OnInit {
   itemsPerPage: number = 7;
   pagedUsers: any[] = [];
 
-  constructor(private userDataService: UserDataService, private route: ActivatedRoute, private titleService: Title) { }
+  constructor(private alertShow: AlertService, private userDataService: UserDataService, private route: ActivatedRoute, private titleService: Title) { }
 
   ngOnInit() {
     const title = this.route.snapshot.data['title'];
@@ -35,6 +36,7 @@ export class UsersTableComponent implements OnInit {
           this.text = "";
         } else {
           this.text = "No Data Found!";
+          this.alertShow.info("There's nothing to show! 😕"); 
         }
       }, 1000);
       console.log(this.usersList);
@@ -42,6 +44,7 @@ export class UsersTableComponent implements OnInit {
       (err) => {
         console.error(err);
         this.text = "Something Went Wrong!😅";
+        this.alertShow.error('Please check your connection! 🌍')
       });
   }
 
@@ -73,12 +76,12 @@ export class UsersTableComponent implements OnInit {
 
   goToPage(page: number) {
     this.currentPage = page;
-    this.isLoading= true;
+    this.isLoading = true;
     this.text = 'Loading...';
     this.updatePagedUsers();
 
-    setTimeout(()=>{
-      this.isLoading= false;
+    setTimeout(() => {
+      this.isLoading = false;
       this.text = '';
     }, 1000);
   }
@@ -86,12 +89,12 @@ export class UsersTableComponent implements OnInit {
   nextPage() {
     if (this.currentPage < this.totalPages()) {
       this.currentPage++;
-      this.isLoading= true;
+      this.isLoading = true;
       this.text = 'Loading...';
       this.updatePagedUsers();
 
-      setTimeout(()=>{
-        this.isLoading= false;
+      setTimeout(() => {
+        this.isLoading = false;
         this.text = '';
       }, 1000);
     }
@@ -100,12 +103,12 @@ export class UsersTableComponent implements OnInit {
   prevPage() {
     if (this.currentPage > 1) {
       this.currentPage--;
-      this.isLoading= true;
+      this.isLoading = true;
       this.text = 'Loading...';
       this.updatePagedUsers();
 
-      setTimeout(()=>{
-        this.isLoading= false;
+      setTimeout(() => {
+        this.isLoading = false;
         this.text = '';
       }, 1000);
     }

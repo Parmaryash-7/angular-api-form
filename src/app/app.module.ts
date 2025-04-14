@@ -12,6 +12,8 @@ import { AngularFormsComponent } from './angular-forms/angular-forms.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MasterForFormComponent } from './master-for-form/master-for-form.component';
 import { UserFormDetailsComponent } from './user-form-details/user-form-details.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -25,13 +27,19 @@ import { UserFormDetailsComponent } from './user-form-details/user-form-details.
     UserFormDetailsComponent,
   ],
   imports: [
-    FormsModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot({
+      timeOut: 3000,
+      positionClass: 'toast-top-right',
+      preventDuplicates: true,
+    }),
     BrowserModule,
+    FormsModule,
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule { }

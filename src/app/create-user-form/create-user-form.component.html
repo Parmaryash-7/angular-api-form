@@ -73,7 +73,7 @@
                 </div>
             </div>
 
-            <button type="submit" [disabled]="userForm.invalid">{{btn_text}}</button>
+            <button type="submit" [disabled]="userForm.invalid || errMsgImg">{{btn_text}}</button>
         </form>
         <div class="Error_div" *ngIf="errMsg">
             <h2>{{errMsg}}</h2>

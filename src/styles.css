@@ -43,6 +43,10 @@ html,
     padding-left: 5%;
 }
 
+.api_wrapper .padding-left {
+    padding-left: 5%;
+}
+
 .api_wrapper .Error_div {
     padding-left: 5%;
     color: red;

@@ -16,7 +16,7 @@ export class UsersTableComponent implements OnInit {
   filteredUsers: any[] = [];
   searchTerm: string = ''
   currentPage: number = 1;
-  itemsPerPage: number = 7;
+  itemsPerPage: number = 6;
   pagedUsers: any[] = [];
 
   constructor(private alertShow: AlertService, private userDataService: UserDataService, private route: ActivatedRoute, private titleService: Title) { }
@@ -31,7 +31,7 @@ export class UsersTableComponent implements OnInit {
       this.updatePagedUsers();
 
       setTimeout(() => {
-        if (this.usersList) {
+        if (this.pagedUsers) {
           this.isLoading = false;
           this.text = "";
         } else {
@@ -39,12 +39,12 @@ export class UsersTableComponent implements OnInit {
           this.alertShow.info("There's nothing to show! 😕"); 
         }
       }, 1000);
-      console.log(this.usersList);
+      // console.log(this.usersList);
     },
       (err) => {
         console.error(err);
         this.text = "Something Went Wrong!😅";
-        this.alertShow.error('Please check your connection! 🌍')
+        this.alertShow.error('Please check your connection! 📶')
       });
   }
 
@@ -83,7 +83,7 @@ export class UsersTableComponent implements OnInit {
     setTimeout(() => {
       this.isLoading = false;
       this.text = '';
-    }, 1000);
+    }, 500);
   }
 
   nextPage() {
@@ -96,7 +96,7 @@ export class UsersTableComponent implements OnInit {
       setTimeout(() => {
         this.isLoading = false;
         this.text = '';
-      }, 1000);
+      }, 500);
     }
   }
 
@@ -110,7 +110,7 @@ export class UsersTableComponent implements OnInit {
       setTimeout(() => {
         this.isLoading = false;
         this.text = '';
-      }, 1000);
+      }, 500);
     }
   }
 }

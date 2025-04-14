@@ -53,7 +53,8 @@ export class AlertService {
       cancelButtonText: 'No',
       customClass: {
         popup: 'small-toast'
-      }
+      },
+      
     });
   }
 }

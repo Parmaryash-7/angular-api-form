@@ -3,7 +3,6 @@ import { UserDataService } from '../user-data.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import { AppComponent } from '../app.component';
-import { ToastrService } from 'ngx-toastr';
 import { AlertService } from '../alert.service';
 
 @Component({
@@ -18,10 +17,9 @@ export class LoginPageComponent implements OnInit {
   errMsg: string = '';
   showPassword: boolean = false;
 
-  constructor(private toaster: ToastrService, private alertShow: AlertService, private appComponent: AppComponent, private userDataService: UserDataService, private router: Router, private route: ActivatedRoute, private titleService: Title) { }
+  constructor(private alertShow: AlertService, private appComponent: AppComponent, private userDataService: UserDataService, private router: Router, private route: ActivatedRoute, private titleService: Title) { }
 
   ngOnInit() {
-    // this.alertShow.error("Invalid Credentials!😵");
     const title = this.route.snapshot.data['title'];
     this.titleService.setTitle(title);
     if (localStorage.getItem('authToken')) {
@@ -45,7 +43,7 @@ export class LoginPageComponent implements OnInit {
         this.router.navigate(['']);
       },
       (err) => {
-        console.error('Login failed:', err);
+        // console.error('Login failed:', err);
         if (err.status == 0) {
           // this.errMsg = "Something Went Wrong!😅";
           this.alertShow.error("Something Went Wrong!😅");

@@ -20,9 +20,9 @@ export class AppComponent implements OnInit {
   }
 
   logout(): void {
-    this.alertShow.confirm('Want to log out? ☹').then((result) => {
+    this.alertShow.confirm('You want to log out? ☹').then((result) => {
       if (result.isConfirmed) {
-        this.alertShow.info('See you later! 👋');
+        this.alertShow.success('See you later! 👋');
         localStorage.removeItem('authToken');
         this.isUserAuthorized = false;
         console.log('logged out');

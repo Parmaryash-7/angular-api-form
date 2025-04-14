@@ -40,9 +40,9 @@ export class CreateUserFormComponent implements OnInit {
       const validImageTypes = ['image/jpeg', 'image/png', 'image/webp', 'image/jpg'];
       if (!validImageTypes.includes(file.type)) {
         this.errMsgImg = "Please select a valid image file";
-        this.alertShow.info('Invalid File Uploaded! 🤓');
         this.user.profile_image = '';
         this.selectedFile = undefined!;
+        this.alertShow.info('Invalid File Uploaded! 🤓');
         return;
       }
 
@@ -91,9 +91,9 @@ export class CreateUserFormComponent implements OnInit {
     this.userDataService.createUser(formData).subscribe((response) => {
       console.log(response);
       if (response.success == 1) {
-        if(this.user.id){
+        if (this.user.id) {
           this.alertShow.success('Yay🥳! User is Updated');
-        }else{
+        } else {
           this.alertShow.success('Yay🥳! User is Created');
         }
         this.user = {

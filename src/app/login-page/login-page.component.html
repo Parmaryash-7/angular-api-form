@@ -7,7 +7,7 @@
             <p *ngIf="emailInput.errors?.email">Invalid Email!</p>
         </div>
         <div class="password_group relative">
-            <input [type]="showPassword ? 'text' : 'password'" [(ngModel)]="password" name="password" #pwd="ngModel"
+            <input [type]="showPassword ? 'text' : 'password'" placeholder="Password" [(ngModel)]="password" name="password" #pwd="ngModel"
                 minlength="6" required>
             <button class="password_eye" type="button" (click)="togglePasswordVisibility()">
                 <i [ngClass]="showPassword ? 'ri-eye-line' : 'ri-eye-close-line'"></i>

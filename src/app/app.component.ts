@@ -25,7 +25,7 @@ export class AppComponent implements OnInit {
         this.alertShow.success('See you later! 👋');
         localStorage.removeItem('authToken');
         this.isUserAuthorized = false;
-        console.log('logged out');
+        // console.log('logged out');
         this.router.navigate(['login']);
       } else {
         this.alertShow.info('Welcome back! 😊');

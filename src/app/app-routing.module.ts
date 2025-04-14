@@ -23,13 +23,13 @@ const routes: Routes = [
   {
     path: 'user-table',
     component: UsersTableComponent,
-    data: { title: 'User Table' },
+    data: { title: 'User Data Table' },
     canActivate: [AuthGuard],
   },
   {
     path: 'create-user',
     component: CreateUserFormComponent,
-    data: { title: 'Create User' },
+    data: { title: 'Register User' },
     canActivate: [AuthGuard],
   },
   {

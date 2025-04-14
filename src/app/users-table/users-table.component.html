@@ -3,7 +3,7 @@
         <h2 class="font_26">{{text}}</h2>
     </div>
     <ng-template #user_deatils>
-        <input type="text" placeholder="Search by Name, Email, Age, or Phone" [(ngModel)]="searchTerm"
+        <input type="text" placeholder="Search by Name, Email, Age, Gender or Phone" [(ngModel)]="searchTerm"
             (input)="filterUsers()" class="search_input" />
 
         <ng-container *ngIf="pagedUsers.length > 0; else NoUserFound">

@@ -53,6 +53,7 @@ export class UsersTableComponent implements OnInit {
     this.filteredUsers = this.usersList.filter(user =>
       user.name.toLowerCase().includes(term) ||
       user.email.toLowerCase().includes(term) ||
+      user.gender.includes(term) ||
       user.age.includes(term) ||
       user.phone_no.includes(term)
     );

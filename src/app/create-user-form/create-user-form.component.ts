@@ -89,7 +89,7 @@ export class CreateUserFormComponent implements OnInit {
     // }
 
     this.userDataService.createUser(formData).subscribe((response) => {
-      console.log(response);
+      // console.log(response);
       if (response.success == 1) {
         if (this.user.id) {
           this.alertShow.success('Yay🥳! User is Updated');

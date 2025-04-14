@@ -29,7 +29,7 @@ export class CreateUserFormComponent implements OnInit {
   errMsgImg: string = '';
   text: string = 'Loading...';
   isLoading: boolean = true;
-  EditUserDefaulImage: any;
+  UserDefaultImage: any;
 
   onFileSelected(event: any) {
     const file: File = event.target.files[0];
@@ -89,12 +89,19 @@ export class CreateUserFormComponent implements OnInit {
     this.userDataService.createUser(formData).subscribe((response) => {
       console.log(response);
       if (response.success == 1) {
-        this.user = null;
-        setTimeout(() => {
-          this.router.navigate(['/user-table']);
-        }, 1000);
+        this.user = {
+          name: "",
+          email: "",
+          age: null,
+          phone_no: "",
+          gender: "",
+          profile_image: null,
+          password: "",
+        };
+        this.router.navigate(['/user-table']);
       } else {
         this.errMsg = "Something Went Wrong! 😅 Try again";
+        return;
       }
     });
   }
@@ -118,6 +125,7 @@ export class CreateUserFormComponent implements OnInit {
         })
     } else {
       this.isLoading = false;
+      // this.text = "Something Went Wrong!😅 Please Go Back";
     }
   }
 }

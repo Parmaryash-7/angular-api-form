@@ -20,7 +20,7 @@
     font-weight: 600;
 }
 
-.container h3 a{
+.container h3 a {
     text-decoration: none;
     color: #fff;
 }
@@ -53,13 +53,13 @@
 }
 
 .container .glitch::before {
-    animation: glitch-anim-before 1s infinite linear;
-    color: red;
+    animation: glitch-anim-before 1.5s infinite linear;
+    color: crimson;
     z-index: -1;
 }
 
 .container .glitch::after {
-    animation: glitch-anim-after 1s infinite linear;
+    animation: glitch-anim-after 1.5s infinite linear;
     color: cyan;
     z-index: -2;
 }

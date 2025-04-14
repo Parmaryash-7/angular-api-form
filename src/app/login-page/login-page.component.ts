@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserDataService } from '../user-data.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
+import { AppComponent } from '../app.component';
 
 @Component({
   selector: 'app-login-page',
@@ -15,7 +16,7 @@ export class LoginPageComponent implements OnInit {
   errMsg: string = '';
   showPassword: boolean = false;
 
-  constructor(private userDataService: UserDataService, private router: Router, private route: ActivatedRoute, private titleService: Title) { }
+  constructor(private appComponent: AppComponent, private userDataService: UserDataService, private router: Router, private route: ActivatedRoute, private titleService: Title) { }
 
   ngOnInit() {
     const title = this.route.snapshot.data['title'];
@@ -30,10 +31,12 @@ export class LoginPageComponent implements OnInit {
   }
 
   onLogin() {
+    this.errMsg = '';
     this.userDataService.login(this.email, this.password).subscribe(
       (res) => {
-        console.log('Login successful:', res.data.id);
+        // console.log('Login successful:', res.data.id);
         localStorage.setItem('authToken', res.data.id);
+        this.appComponent.isUserAuthorized = true;
         this.router.navigate(['']);
       },
       (err) => {

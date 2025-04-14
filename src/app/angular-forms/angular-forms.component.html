@@ -1,0 +1,74 @@
+<div class="create_user_container">
+    <form class="user_form" (ngSubmit)="onSubmit()" [formGroup]="userForm">
+        <h2 class="form_title">User Form</h2>
+        <div class="form_group">
+            <label>Name:</label>
+            <input type="text" name="name" formControlName="name" required minlength="3">
+            <div class="Error_div" *ngIf="name.invalid && (name.touched || name.dirty)">
+                <p *ngIf="name.errors?.required">Name is required.</p>
+                <p *ngIf="name.errors?.minlength">Name must be at least 3 characters.</p>
+            </div>
+        </div>
+
+        <div class="form_group">
+            <label>Email:</label>
+            <input type="email" name="email" formControlName="email" email required>
+            <div class="Error_div" *ngIf="email.invalid && (email.touched || email.dirty)">
+                <p *ngIf="email.errors?.required">Email is required</p>
+                <p *ngIf="email.errors?.email">Enter valid Email!</p>
+            </div>
+        </div>
+
+        <div class="form_group">
+            <label>Password:</label>
+            <div class="password_group relative">
+                <input [type]="showPassword ? 'text' : 'password'" name="password" formControlName="password"
+                    minlength="6" required>
+                <button class="password_eye" type="button" (click)="togglePasswordVisibility()">
+                    <i [ngClass]="showPassword ? 'ri-eye-line' : 'ri-eye-close-line'"></i>
+                </button>
+            </div>
+            <div class="Error_div" *ngIf="password.invalid && (password.touched || password.dirty)">
+                <p *ngIf="password.errors?.required">Password is required</p>
+                <p *ngIf="password.errors?.minlength">Password must be at least 6 characters.</p>
+            </div>
+        </div>
+
+        <div class="form_group">
+            <label>Age:</label>
+            <input type="number" name="age" formControlName="age" required>
+        </div>
+
+        <div class="form_group">
+            <label>Gender:</label>
+            <select name="gender" formControlName="gender" required>
+                <option value="" disabled>Select</option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+            </select>
+        </div>
+
+        <div class="form_group">
+            <label>Phone No:</label>
+            <input type="tel" (keypress)="restrictNonNumeric($event)" name="phone_no" formControlName="phone_no"
+                pattern="^[0-9]{10}$" maxlength="10" required>
+            <div class="Error_div" *ngIf="phone_no?.invalid && (phone_no?.touched || phone_no?.dirty)">
+                <p *ngIf="phone_no?.errors?.required">Phone number is required.</p>
+                <p *ngIf="phone_no?.errors?.pattern">Phone number must be exactly 10 digits.</p>
+            </div>
+        </div>
+
+        <div class="form_group profile_image">
+            <label class="font_16" for="profile_image">Profile Image:</label>
+            <input type="file" id="profile_image" name="profile_image" formControlName="profile_image" (change)="onFileSelected($event)">
+            <div class="Error_div" *ngIf="errMsgImg">
+                <p>{{errMsgImg}}</p>
+            </div>
+            <div class="preview_image" *ngIf="userForm.get('profile_image')?.value">
+                <img [src]="userForm.get('profile_image')?.value" alt="Preview">
+            </div>
+        </div>
+
+        <button type="submit" [disabled]="userForm.invalid">Submit</button>
+    </form>
+</div>

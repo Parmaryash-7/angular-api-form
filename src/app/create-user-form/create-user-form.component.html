@@ -33,16 +33,13 @@
                     </button>
                 </div>
                 <div class="Error_div" *ngIf="password.invalid && (password.touched || password.dirty)">
-                    <p *ngIf="password.errors?.minlength">Name must be at least 6 characters.</p>
+                    <p *ngIf="password.errors?.minlength">Password must be at least 6 characters.</p>
                 </div>
             </div>
 
             <div class="form_group">
                 <label>Age:</label>
                 <input type="number" [(ngModel)]="user.age" name="age" #age="ngModel" required>
-                <!-- <div class="Error_div" *ngIf="age.invalid && (age.touched || age.dirty)">
-                    <p *ngIf="age.errors?.minlength">Name must be at least 6 characters.</p>
-                </div> -->
             </div>
 
             <div class="form_group">

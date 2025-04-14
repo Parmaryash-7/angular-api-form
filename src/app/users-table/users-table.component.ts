@@ -15,7 +15,7 @@ export class UsersTableComponent implements OnInit {
   filteredUsers: any[] = [];
   searchTerm: string = ''
   currentPage: number = 1;
-  itemsPerPage: number = 6;
+  itemsPerPage: number = 7;
   pagedUsers: any[] = [];
 
   constructor(private userDataService: UserDataService, private route: ActivatedRoute, private titleService: Title) { }
@@ -25,7 +25,7 @@ export class UsersTableComponent implements OnInit {
     this.titleService.setTitle(title);
     this.userDataService.getAllUsers().subscribe((res) => {
       this.usersList = res.users_list;
-      this.filteredUsers = [...this.usersList]
+      this.filteredUsers = [...this.usersList];
 
       this.updatePagedUsers();
 
@@ -34,15 +34,15 @@ export class UsersTableComponent implements OnInit {
           this.isLoading = false;
           this.text = "";
         } else {
-          this.text = "No Data Found!"
+          this.text = "No Data Found!";
         }
-      }, 1000)
-      console.log(this.usersList)
+      }, 1000);
+      console.log(this.usersList);
     },
       (err) => {
-        console.error(err)
-        this.text = "Something Went Wrong!😅"
-      })
+        console.error(err);
+        this.text = "Something Went Wrong!😅";
+      });
   }
 
   filterUsers() {
@@ -73,20 +73,41 @@ export class UsersTableComponent implements OnInit {
 
   goToPage(page: number) {
     this.currentPage = page;
+    this.isLoading= true;
+    this.text = 'Loading...';
     this.updatePagedUsers();
+
+    setTimeout(()=>{
+      this.isLoading= false;
+      this.text = '';
+    }, 1000);
   }
 
   nextPage() {
     if (this.currentPage < this.totalPages()) {
       this.currentPage++;
+      this.isLoading= true;
+      this.text = 'Loading...';
       this.updatePagedUsers();
+
+      setTimeout(()=>{
+        this.isLoading= false;
+        this.text = '';
+      }, 1000);
     }
   }
 
   prevPage() {
     if (this.currentPage > 1) {
       this.currentPage--;
+      this.isLoading= true;
+      this.text = 'Loading...';
       this.updatePagedUsers();
+
+      setTimeout(()=>{
+        this.isLoading= false;
+        this.text = '';
+      }, 1000);
     }
   }
 }

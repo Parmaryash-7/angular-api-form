@@ -1,5 +1,8 @@
 .users_div {
-    margin-top: 50px;
+    padding-top: 5%;
+    width: 95%;
+    margin: 50px auto;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
 }
 
 .users_list {
@@ -52,7 +55,7 @@
 .search_input {
     padding: 8px;
     width: 60%;
-    margin: 0 15%;
+    margin: 0 20%;
     margin-bottom: 5%;
     font-size: 16px;
     border-radius: 6px;

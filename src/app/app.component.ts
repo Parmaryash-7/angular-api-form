@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { UserDataService } from './user-data.service';
 
 @Component({
   selector: 'app-root',
@@ -9,7 +10,11 @@ import { Router } from '@angular/router';
 export class AppComponent implements OnInit {
   isUserAuthorized: boolean = false;
 
-  constructor(private router: Router) { }
+  constructor(private router: Router) { 
+    if(localStorage.getItem('authToken')){
+      this.isUserAuthorized = true;
+    }
+  }
 
   ngOnInit() {
   }

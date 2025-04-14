@@ -30,28 +30,33 @@
                     <p class="font_15 bold_style">Profile Image</p>
                 </div>
             </li>
-            <li *ngFor="let user of pagedUsers; index as i " class="user_deatils">
-                <div class="id">
-                    <p class="font_15 bold_style">{{ (currentPage - 1) * itemsPerPage + i + 1 }}</p>
-                </div>
-                <div class="name">
-                    <p class="font_15 bold_style">{{user.name}}</p>
-                </div>
-                <div class="email">
-                    <p class="font_15 bold_style">{{user.email}}</p>
-                </div>
-                <div class="age">
-                    <p class="font_15 bold_style">{{user.age}}</p>
-                </div>
-                <div class="phone_no">
-                    <p class="font_15 bold_style">{{user.phone_no}}</p>
-                </div>
-                <div class="gender">
-                    <p class="font_15 bold_style">{{user.gender}}</p>
-                </div>
-                <div class="profile_image"><img src={{user.profile_image}} alt="" class="user_profile"></div>
-                <div class="btn"><a [routerLink]="['/edit_user',user.id]" class="font_15">Edit</a></div>
-            </li>
+            <ng-container *ngIf="pagedUsers.length > 0; else NoUserFound">
+                <li *ngFor="let user of pagedUsers; index as i " class="user_deatils">
+                    <div class="id">
+                        <p class="font_15 bold_style">{{ (currentPage - 1) * itemsPerPage + i + 1 }}</p>
+                    </div>
+                    <div class="name">
+                        <p class="font_15 bold_style">{{user.name}}</p>
+                    </div>
+                    <div class="email">
+                        <p class="font_15 bold_style">{{user.email}}</p>
+                    </div>
+                    <div class="age">
+                        <p class="font_15 bold_style">{{user.age}}</p>
+                    </div>
+                    <div class="phone_no">
+                        <p class="font_15 bold_style">{{user.phone_no}}</p>
+                    </div>
+                    <div class="gender">
+                        <p class="font_15 bold_style">{{user.gender}}</p>
+                    </div>
+                    <div class="profile_image"><img src={{user.profile_image}} alt="" class="user_profile"></div>
+                    <div class="btn"><a [routerLink]="['/edit_user',user.id]" class="font_15">Edit</a></div>
+                </li>
+            </ng-container>
+            <ng-template #NoUserFound>
+                <h2 class="font_26">Sorry No User Found! 😓</h2>
+            </ng-template>
         </ol>
         <div class="pagination_controls">
             <button (click)="prevPage()" [disabled]="currentPage === 1">Previous</button>
@@ -61,7 +66,7 @@
                 {{ page }}
             </button>
 
-            <button (click)="nextPage()" [disabled]="currentPage === totalPages()">Next</button>
+            <button (click)="nextPage()" [disabled]="currentPage === totalPages() || pagedUsers.length === 0">Next</button>
         </div>
     </ng-template>
 </div>

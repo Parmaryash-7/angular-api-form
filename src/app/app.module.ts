@@ -8,12 +8,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { CreateUserFormComponent } from './create-user-form/create-user-form.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-import { AngularFormsComponent } from './angular-forms/angular-forms.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { MasterForFormComponent } from './master-for-form/master-for-form.component';
-import { UserFormDetailsComponent } from './user-form-details/user-form-details.component';
-// import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-// import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -22,9 +17,6 @@ import { UserFormDetailsComponent } from './user-form-details/user-form-details.
     UsersTableComponent,
     CreateUserFormComponent,
     PageNotFoundComponent,
-    AngularFormsComponent,
-    MasterForFormComponent,
-    UserFormDetailsComponent,
   ],
   imports: [
     // BrowserAnimationsModule,

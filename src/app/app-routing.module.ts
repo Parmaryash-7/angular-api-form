@@ -5,9 +5,6 @@ import { UsersTableComponent } from './users-table/users-table.component';
 import { CreateUserFormComponent } from './create-user-form/create-user-form.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { AuthGuard } from './auth.guard';
-import { AngularFormsComponent } from './angular-forms/angular-forms.component';
-import { MasterForFormComponent } from './master-for-form/master-for-form.component';
-import { UserFormDetailsComponent } from './user-form-details/user-form-details.component';
 
 const routes: Routes = [
   {
@@ -38,15 +35,6 @@ const routes: Routes = [
     data: { title: 'Edit User' },
     canActivate: [AuthGuard],
   },
-  // {
-  //   path: 'angular-forms',
-  //   component: MasterForFormComponent,
-  //   data: { title: 'Angular Forms' },
-  //   children: [
-  //     {path: 'user-info', component: UserFormDetailsComponent},
-  //     {path: '', component: AngularFormsComponent}
-  //   ]
-  // },
   {
     path: '**',
     component: PageNotFoundComponent,

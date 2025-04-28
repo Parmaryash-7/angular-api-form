@@ -53,6 +53,7 @@
                     </div>
                     <div class="profile_image"><img src={{user.profile_image}} alt="" class="user_profile"></div>
                     <div class="btn"><a [routerLink]="['/edit_user',user.id]" class="font_15">Edit</a></div>
+                    <div class="btn delete_btn" (click)="deleteUser(user.id, user.name)">🗑</div>
                 </li>
                 <!-- </ng-container> -->
             </ol>

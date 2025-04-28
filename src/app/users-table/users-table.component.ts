@@ -21,9 +21,7 @@ export class UsersTableComponent implements OnInit {
 
   constructor(private alertShow: AlertService, private userDataService: UserDataService, private route: ActivatedRoute, private titleService: Title) { }
 
-  ngOnInit() {
-    const title = this.route.snapshot.data['title'];
-    this.titleService.setTitle(title);
+  getAllUsers() {
     this.userDataService.getAllUsers().subscribe((res) => {
       this.usersList = res.users_list;
       this.filteredUsers = [...this.usersList];
@@ -36,7 +34,7 @@ export class UsersTableComponent implements OnInit {
           this.text = "";
         } else {
           this.text = "No Data Found!";
-          this.alertShow.info("There's nothing to show! 😕"); 
+          this.alertShow.info("There's nothing to show! 😕");
         }
       }, 1000);
       // console.log(this.usersList);
@@ -46,6 +44,12 @@ export class UsersTableComponent implements OnInit {
         this.text = "Something Went Wrong!😅";
         this.alertShow.error('Please check your connection! 📶')
       });
+  }
+
+  ngOnInit() {
+    const title = this.route.snapshot.data['title'];
+    this.titleService.setTitle(title);
+    this.getAllUsers()
   }
 
   filterUsers() {
@@ -59,6 +63,27 @@ export class UsersTableComponent implements OnInit {
     );
     this.currentPage = 1;
     this.updatePagedUsers();
+  }
+
+  deleteUser(id: string, name: string) {
+    this.alertShow.confirm(`Want to delete ${name}?`).then((result) => {
+      // console.log(result.isConfirmed)
+      if (result.isConfirmed) {
+        // console.log(result)
+        this.userDataService.deleteUser(id).subscribe((res) => {
+          // console.log(res.success)
+          if (res.success) {
+            // console.log('hii');
+            this.alertShow.success('User Deleted!');
+            this.getAllUsers();
+          } else {
+            this.alertShow.error('Maybe, User Not Found 🔍.')
+          }
+        });
+      } else {
+        this.alertShow.info('User is not Deleted!');
+      }
+    })
   }
 
   updatePagedUsers() {

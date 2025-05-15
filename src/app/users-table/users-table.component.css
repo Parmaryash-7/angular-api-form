@@ -1,6 +1,6 @@
 .users_div {
-    padding-top: 5%;
-    width: 95%;
+    padding: 30px;
+    width: 70%;
     margin: 50px auto;
     box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
 }

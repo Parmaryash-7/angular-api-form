@@ -42,7 +42,7 @@ export class CreateUserFormComponent implements OnInit {
         this.errMsgImg = "Please select a valid image file";
         this.user.profile_image = '';
         this.selectedFile = undefined!;
-        this.alertShow.info('Invalid File Uploaded! 🤓');
+        this.alertShow.info('Invalid File Uploaded!');
         return;
       }
 
@@ -92,9 +92,9 @@ export class CreateUserFormComponent implements OnInit {
       // console.log(response);
       if (response.success == 1) {
         if (this.user.id) {
-          this.alertShow.success('Yay🥳! User is Updated');
+          this.alertShow.success('Yay! User is Updated');
         } else {
-          this.alertShow.success('Yay🥳! User is Created');
+          this.alertShow.success('Yay! User is Created');
         }
         this.user = {
           name: "",
@@ -107,8 +107,8 @@ export class CreateUserFormComponent implements OnInit {
         };
         this.router.navigate(['/user-table']);
       } else {
-        this.errMsg = "Something Went Wrong! 😅 Try again";
-        this.alertShow.error('Sorry😞! Data not sent');
+        this.errMsg = "Something Went Wrong!  Try again";
+        this.alertShow.error('Sorry! Data not sent');
         return;
       }
     });
@@ -129,12 +129,12 @@ export class CreateUserFormComponent implements OnInit {
         (err) => {
           console.error(err);
           this.isLoading = true;
-          this.text = "Something Went Wrong!😅";
-          this.alertShow.error('Something Went Wrong!😅');
+          this.text = "Something Went Wrong!";
+          this.alertShow.error('Something Went Wrong!');
         })
     } else {
       this.isLoading = false;
-      // this.text = "Something Went Wrong!😅 Please Go Back";
+      // this.text = "Something Went Wrong! Please Go Back";
     }
   }
 }
